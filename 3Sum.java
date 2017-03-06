@@ -5,7 +5,7 @@
  Difficulty: Medium
  Source:     https://oj.leetcode.com/problems/3sum/
  Notes:
- Given an array S of n integers, are there elements a, b, c in S such that a + b + c = 0? 
+ Given an array S of n integers, are there elements a, b, c in S such that a + b + c = 0?
  Find all unique triplets in the array which gives the sum of zero.
  Note:
  Elements in a triplet (a,b,c) must be in non-descending order. (ie, a <= b <= c)
@@ -21,6 +21,7 @@ public class Solution {
     public List<List<Integer>> threeSum(int[] num) {
         List<List<Integer>> res = new ArrayList<List<Integer>>();
         Arrays.sort(num);
+        //S = {-4 -1 -1 0 1 2 }
         int N = num.length;
         for (int i = 0; i < N-2 && num[i] <= 0; ++i)
         {
@@ -30,9 +31,15 @@ public class Solution {
             int l = i + 1, r = N - 1;
             while (l < r)
             {
-                int sum = num[l] + num[r];
+                //S = {-4 -1 -1 0 1 2 }
+                //      i  l        r
+                int sum = num[l] + num[r];  //左右开弓
                 if (sum < twosum) ++l;
+                //S = {-4 -1 -1 0 1 2 }
+                //      i     l     r    //向右调
                 else if (sum > twosum) --r;
+                //S = {-4 -1 -1 0 1 2 }
+                //      i  l      r     //向左调
                 else {
                     ArrayList<Integer> tmp = new ArrayList<Integer>();
                     tmp.add(num[i]); tmp.add(num[l]); tmp.add(num[r]);
